@@ -7,7 +7,7 @@
 
 /* ── CUSTOM PROPERTIES ─────────────────────────────────────── */
 :root {
-  --ink:     #080808;
+  --ink:     #000000;
   --ink-2:   #111111;
   --ink-3:   #1c1c1c;
   --paper:   #f8f6f3;
@@ -27,17 +27,17 @@
   --text-2:  rgba(255,255,255,0.6);
   --text-3:  rgba(255,255,255,0.35);
   --border:  rgba(255,255,255,0.1);
-  --nav-bg:  rgba(8,8,8,0.92);
+  --nav-bg:  rgba(0,0,0,0.92);
 }
 
 html[data-theme="light"] {
   --bg:      var(--paper);
   --bg-2:    var(--paper-2);
   --bg-3:    var(--paper-3);
-  --text:    rgba(8,8,8,0.92);
-  --text-2:  rgba(8,8,8,0.6);
-  --text-3:  rgba(8,8,8,0.35);
-  --border:  rgba(8,8,8,0.12);
+  --text:    rgba(0,0,0,0.92);
+  --text-2:  rgba(0,0,0,0.6);
+  --text-3:  rgba(0,0,0,0.35);
+  --border:  rgba(0,0,0,0.12);
   --nav-bg:  rgba(248,246,243,0.95);
 }
 
@@ -172,9 +172,10 @@ html[data-theme="light"] .nav-logo img { filter: brightness(0); }
   font-weight: 600;
   letter-spacing: 0.06em;
   color: var(--text);
+  display: none;
 }
+.nav-logo img.hidden { display: none; }
 .nav-logo img.hidden + .logo-fallback { display: block; }
-.nav-logo img:not(.hidden) + .logo-fallback { display: none; }
 
 .nav-links {
   display: flex;
@@ -339,7 +340,7 @@ html[data-theme="light"] #mobile-menu { background: var(--paper); }
 #search-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(8,8,8,0.97);
+  background: rgba(0,0,0,0.97);
   z-index: 2000;
   display: flex;
   flex-direction: column;
@@ -467,7 +468,7 @@ html[data-theme="light"] #search-overlay { background: rgba(248,246,243,0.98); }
 .btn-outline-dark {
   background: transparent;
   color: var(--ink);
-  border: 1px solid rgba(8,8,8,0.35);
+  border: 1px solid rgba(0,0,0,0.35);
 }
 .btn-outline-dark::before { background: var(--ink); }
 .btn-outline-dark:hover { color: var(--white); }
@@ -580,14 +581,15 @@ html[data-theme="light"] .section-light { background: var(--paper); color: var(-
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(8,8,8,0.55) 0%, rgba(8,8,8,0.2) 50%, rgba(8,8,8,0.05) 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.05) 100%);
+  pointer-events: none;
 }
 .hero-content {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: clamp(2rem, 8vw, 6rem);
-  max-width: 1000px;
+  padding: clamp(2rem, 6vw, 5rem);
+  max-width: 1100px;
 }
 .page-hero-short .hero-content {
   text-align: left;
@@ -597,9 +599,9 @@ html[data-theme="light"] .section-light { background: var(--paper); color: var(-
 }
 .hero-h1 {
   font-family: var(--font-serif);
-  font-size: clamp(5rem, 14vw, 12rem);
+  font-size: clamp(5rem, 13vw, 9rem);
   font-weight: 300;
-  line-height: 0.9;
+  line-height: 0.95;
   letter-spacing: -0.02em;
   color: #fff;
   margin-bottom: 1.5rem;
@@ -621,41 +623,7 @@ html[data-theme="light"] .section-light { background: var(--paper); color: var(-
   color: rgba(255,255,255,0.7);
   margin-bottom: 2.5rem;
 }
-.hero-scroll-cue {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  color: rgba(255,255,255,0.4);
-}
-.hero-scroll-cue span {
-  font-size: 0.5rem;
-  font-weight: 700;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-}
-.scroll-line {
-  width: 1px;
-  height: 50px;
-  background: rgba(255,255,255,0.25);
-  position: relative;
-  overflow: hidden;
-}
-.scroll-line::after {
-  content: '';
-  position: absolute;
-  top: -100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255,255,255,0.7);
-  animation: scrollDown 1.5s var(--ease) infinite;
-}
-@keyframes scrollDown { to { top: 200%; } }
+/* Scroll cue removed per request. */
 
 /* ── SECTION PADDING ────────────────────────────────────────── */
 .section-pad { padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 4rem); }
@@ -921,7 +889,7 @@ html[data-theme="dark"] .stream-section { background: var(--paper); color: var(-
   max-width: 640px;
   margin: 0 auto;
   padding: 3rem;
-  border: 1px solid rgba(8,8,8,0.12);
+  border: 1px solid rgba(0,0,0,0.12);
   text-align: center;
 }
 .join-card-icon {
@@ -1034,7 +1002,7 @@ html[data-theme="dark"] .stream-section { background: var(--paper); color: var(-
   user-select: none;
   letter-spacing: -0.05em;
 }
-html[data-theme="light"] .prayer-watermark { color: rgba(8,8,8,0.04); }
+html[data-theme="light"] .prayer-watermark { color: rgba(0,0,0,0.04); }
 .prayer-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
 .prayer-scripture {
   font-family: var(--font-serif);
@@ -1109,7 +1077,7 @@ html[data-theme="light"] .pillar-content { background: var(--paper); color: var(
 .pillar-content p {
   font-size: 0.9rem;
   line-height: 1.8;
-  color: rgba(8,8,8,0.65);
+  color: rgba(0,0,0,0.65);
   margin-bottom: 1.5rem;
 }
 .scripture-pill {
@@ -1355,7 +1323,7 @@ html[data-theme="dark"] .giving-email { color: rgba(255,255,255,0.9); }
   font-weight: 700;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(8,8,8,0.5);
+  color: rgba(0,0,0,0.5);
   margin-bottom: 0.4rem;
 }
 .modal-field input,
@@ -1363,7 +1331,7 @@ html[data-theme="dark"] .giving-email { color: rgba(255,255,255,0.9); }
   width: 100%;
   background: none;
   border: none;
-  border-bottom: 1px solid rgba(8,8,8,0.2);
+  border-bottom: 1px solid rgba(0,0,0,0.2);
   padding: 0.75rem 0;
   font-family: var(--font-sans);
   font-size: 0.9rem;
@@ -1482,7 +1450,7 @@ html[data-theme="light"] .prayer-section p,
 html[data-theme="light"] .prayer-section blockquote { color: var(--ink) !important; }
 /* Footer always dark regardless of theme */
 html[data-theme="light"] .hero-overlay {
-  background: linear-gradient(to top, rgba(8,8,8,0.5) 0%, rgba(8,8,8,0.15) 55%, rgba(8,8,8,0.02) 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0.02) 100%);
 }
 html[data-theme="light"] .section-dark .eyebrow { color: var(--gold); }
 
@@ -1551,7 +1519,7 @@ html[data-theme="light"] .section-dark .eyebrow { color: var(--gold); }
   flex-wrap: wrap;
 }
 html[data-theme="light"] .yt-cta-strip {
-  background: rgba(8,8,8,0.04);
+  background: rgba(0,0,0,0.04);
   border-color: var(--border);
 }
 .yt-cta-strip p { font-size: 0.82rem; color: var(--text-2); margin: 0; letter-spacing: 0.05em; }
@@ -1623,20 +1591,20 @@ html[data-theme="light"] .nav-logo img { filter: none !important; }
 }
 .hero-video-iframe {
   position: absolute;
-  top: 50%; left: 50%;
+  top: 35%; left: 50%;
   width: 177.78vh; /* 16:9 */
   height: 100vh;
   min-width: 100%;
   min-height: 56.25vw;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -35%);
   border: none;
-  pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.92;
 }
 .hero-video-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(8,8,8,0.55);
+  background: rgba(0,0,0,0.4);
+  pointer-events: none;
 }
 
 /* ── DARK MODE — TEXT VISIBILITY FIX ───────────────────────── */
@@ -1684,7 +1652,7 @@ html:not([data-theme="light"]) .feature-card p  { color: rgba(255,255,255,0.65);
   grid-column: 1/-1;
   text-align: center;
   padding: 3rem;
-  color: rgba(8,8,8,0.35);
+  color: rgba(0,0,0,0.35);
   font-size: 0.85rem;
 }
 /* Override default event-row styles to show as cards */
@@ -1745,7 +1713,7 @@ html:not([data-theme="light"]) .event-card-meta  { color: rgba(255,255,255,0.45)
   position: fixed;
   inset: 0;
   z-index: 9000;
-  background: rgba(8,8,8,0.75);
+  background: rgba(0,0,0,0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   display: flex;
@@ -1769,8 +1737,6 @@ html:not([data-theme="light"]) .event-card-meta  { color: rgba(255,255,255,0.45)
 @media (max-width: 768px) {
   .events-card-grid { grid-template-columns: 1fr; }
   .page-hero { min-height: 100svh; }
-  .hero-video-iframe { display: none; }
-  .hero-video-wrap { background: url('https://lh3.googleusercontent.com/d/10XjWVZGre_im94tHaI7ERDMnADVy2MtD') center/cover no-repeat; }
 }
 
 
@@ -1830,7 +1796,7 @@ html:not([data-theme="light"]) .pillar-content {
   color: var(--ink) !important;
 }
 html:not([data-theme="light"]) .pillar-content h2 { color: var(--ink) !important; }
-html:not([data-theme="light"]) .pillar-content p { color: rgba(8,8,8,0.65) !important; }
+html:not([data-theme="light"]) .pillar-content p { color: rgba(0,0,0,0.65) !important; }
 
 /* ── ABOUT CTA — light mode "Join us in Our Mission" black ─────  */
 html[data-theme="light"] .section-dark .section-title,
@@ -1842,7 +1808,7 @@ html[data-theme="light"] .sisters-title { color: var(--ink) !important; }
 
 /* ── MEN'S — light mode: Built for Brotherhood black ───────── */
 html[data-theme="light"] .brotherhood-title { color: var(--ink) !important; }
-html[data-theme="light"] .brotherhood-body  { color: rgba(8,8,8,0.65) !important; }
+html[data-theme="light"] .brotherhood-body  { color: rgba(0,0,0,0.65) !important; }
 
 /* ── CHILDREN'S — light mode: Growing Together black ───────── */
 html[data-theme="light"] .growing-title { color: var(--ink) !important; }
@@ -1993,8 +1959,7 @@ html:not([data-theme="light"]) .events-mini-item { border-color: rgba(255,255,25
 /* ── HERO BG — fix brightness ───────────────────────────────── */
 .hero-bg { filter: brightness(0.78); }
 
-/* ── VIDEO HERO — autoplay fill ─────────────────────────────── */
-.hero-video-iframe { opacity: 0.72; }
+/* Opacity is set directly on .hero-video-iframe above. */
 
 /* ════════════════════════════════════════════════════════════════
    BATCH-4 UPDATES
@@ -2028,7 +1993,7 @@ html[data-theme="light"] .nav-dropdown a:hover {
 /* Override the previous dark-mode-only styles               */
 html:not([data-theme="light"]) .event-card-item {
   background: var(--paper-2) !important;
-  border: 1px solid rgba(8,8,8,0.12) !important;
+  border: 1px solid rgba(0,0,0,0.12) !important;
   border-radius: 4px;
   color: var(--ink) !important;
 }
@@ -2036,10 +2001,10 @@ html:not([data-theme="light"]) .event-card-title {
   color: var(--ink) !important;
 }
 html:not([data-theme="light"]) .event-card-meta {
-  color: rgba(8,8,8,0.55) !important;
+  color: rgba(0,0,0,0.55) !important;
 }
 html:not([data-theme="light"]) .event-card-item p {
-  color: rgba(8,8,8,0.6) !important;
+  color: rgba(0,0,0,0.6) !important;
 }
 /* Keep gold date badge the same in both modes */
 .event-card-date {
@@ -2048,7 +2013,7 @@ html:not([data-theme="light"]) .event-card-item p {
 }
 /* Loading text consistent */
 html:not([data-theme="light"]) .events-loading {
-  color: rgba(8,8,8,0.35) !important;
+  color: rgba(0,0,0,0.35) !important;
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -2095,8 +2060,8 @@ html[data-theme="light"] .evt-header .section-title { color: var(--ink) !importa
 }
 .evt-arrow svg { width: 18px; height: 18px; }
 html[data-theme="light"] .evt-arrow {
-  border-color: rgba(8,8,8,0.2);
-  background: rgba(8,8,8,0.05);
+  border-color: rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.05);
   color: var(--ink);
 }
 html[data-theme="light"] .evt-arrow:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
@@ -2156,10 +2121,10 @@ html[data-theme="light"] .evt-arrow:hover { background: var(--gold); border-colo
   inset: 0;
   background:
     linear-gradient(180deg,
-      rgba(8,8,8,0) 0%,
-      rgba(8,8,8,0.15) 30%,
-      rgba(8,8,8,0.72) 65%,
-      rgba(8,8,8,0.97) 100%
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0.15) 30%,
+      rgba(0,0,0,0.72) 65%,
+      rgba(0,0,0,0.97) 100%
     );
   z-index: 1;
 }
@@ -2182,14 +2147,14 @@ html[data-theme="light"] .evt-arrow:hover { background: var(--gold); border-colo
   bottom: 0; left: 0; right: 0;
   z-index: 3;
   padding: 2rem 2rem 2rem;
-  background: rgba(8,8,8,0.28);
+  background: rgba(0,0,0,0.28);
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   border-top: 1px solid rgba(255,255,255,0.1);
   transform: translateY(0);
   transition: transform 0.5s var(--ease), background 0.4s;
 }
-.evt-card:hover .evt-card-glass { background: rgba(8,8,8,0.42); }
+.evt-card:hover .evt-card-glass { background: rgba(0,0,0,0.42); }
 
 /* Oversized date number */
 .evt-card-day-num {
@@ -2300,9 +2265,9 @@ html[data-theme="light"] .evt-arrow:hover { background: var(--gold); border-colo
 html[data-theme="light"] .evt-skeleton {
   background: linear-gradient(
     90deg,
-    rgba(8,8,8,0.06) 0%,
-    rgba(8,8,8,0.1) 40%,
-    rgba(8,8,8,0.06) 100%
+    rgba(0,0,0,0.06) 0%,
+    rgba(0,0,0,0.1) 40%,
+    rgba(0,0,0,0.06) 100%
   );
   background-size: 200% 100%;
 }
@@ -2331,7 +2296,7 @@ html[data-theme="light"] .evt-skeleton {
   width: 22px;
   border-radius: 3px;
 }
-html[data-theme="light"] .evt-dot { background: rgba(8,8,8,0.15); }
+html[data-theme="light"] .evt-dot { background: rgba(0,0,0,0.15); }
 html[data-theme="light"] .evt-dot.active { background: var(--gold); }
 
 /* ── PARALLAX DEPTH NUMBER (behind card) ────────────────────── */
@@ -2351,7 +2316,7 @@ html[data-theme="light"] .evt-dot.active { background: var(--gold); }
   user-select: none;
   z-index: 0;
 }
-html[data-theme="light"] .evt-section::before { color: rgba(8,8,8,0.03); }
+html[data-theme="light"] .evt-section::before { color: rgba(0,0,0,0.03); }
 
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
@@ -2650,16 +2615,22 @@ body::after {
   font-family: var(--font-serif);
   font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 300;
-  color: #fff;
+  color: var(--text);
   background: none;
   border: none;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid var(--border);
   outline: none;
   width: 100%;
   padding: 1rem 0;
   caret-color: var(--gold);
 }
-#search-input::placeholder { color: rgba(255,255,255,0.25); }
+#search-input::placeholder { color: var(--text-3); }
+html[data-theme="light"] #search-input { color: #000000 !important; }
+html[data-theme="light"] #search-input::placeholder { color: rgba(0,0,0,0.35) !important; }
+html:not([data-theme="light"]) .search-result-item { border-bottom-color: rgba(255,255,255,0.08); }
+html[data-theme="light"] .search-result-item { border-bottom-color: rgba(0,0,0,0.1); }
+html[data-theme="light"] .sr-title { color: #000000; }
+html[data-theme="light"] .sr-excerpt { color: rgba(0,0,0,0.6); }
 .search-label {
   font-size: 0.55rem;
   font-weight: 700;
@@ -2844,14 +2815,7 @@ body::after {
   margin-top: 0.5rem;
 }
 
-/* ── HERO SCROLL CUE ENHANCED ────────────────────────────────── */
-.hero-scroll-cue {
-  animation: cueFade 1.5s ease 2s both;
-}
-@keyframes cueFade {
-  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
-  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
-}
+/* Scroll cue removed per request. */
 
 /* ── MODAL ENHANCED ──────────────────────────────────────────── */
 .modal-card {
@@ -2877,7 +2841,7 @@ body::after {
 #connect-modal.open .modal-card { transform: translateY(0); }
 .modal-confidential {
   font-size: 0.72rem;
-  color: rgba(8,8,8,0.45);
+  color: rgba(0,0,0,0.45);
   margin-bottom: 1.5rem;
   font-style: italic;
 }
@@ -2961,26 +2925,19 @@ html[data-theme="light"] .nav-dropdown {
 }
 html[data-theme="light"] .nav-dropdown a,
 html[data-theme="light"] .nav-dropdown a:visited {
-  color: #080808 !important;
+  color: #000000 !important;
   background: transparent !important;
 }
 html[data-theme="light"] .nav-dropdown a:hover {
-  color: #080808 !important;
+  color: #000000 !important;
   background: rgba(0,0,0,0.04) !important;
 }
 
-/* ── GIVE PAGE: dark mode copy button text WHITE ─────────────── */
-html:not([data-theme="light"]) .btn-outline-dark {
-  color: #ffffff !important;
-  border-color: rgba(255,255,255,0.35) !important;
-}
-html:not([data-theme="light"]) .btn-outline-dark:hover {
-  color: #ffffff !important;
-  background: rgba(255,255,255,0.1) !important;
-}
-html:not([data-theme="light"]) .btn-outline-dark::before {
-  background: rgba(255,255,255,0.08) !important;
-}
+/* ── btn-outline-dark is always used on permanently-light cards/
+   sections (modals, .section-light, .section-light-2) so it must
+   always stay dark-ink text — the old blanket dark-mode override
+   here made it invisible (white-on-white). See DEFINITIVE FIXES
+   at the end of this file for the full, correct button system. ── */
 
 /* ── MEN'S MINISTRY: light mode section headings BLACK ───────── */
 html[data-theme="light"] .brotherhood-section .section-title,
@@ -2988,39 +2945,39 @@ html[data-theme="light"] .brotherhood-section h2,
 html[data-theme="light"] .brotherhood-section h3,
 html[data-theme="light"] .brotherhood-action-title,
 html[data-theme="light"] .mens-events-title,
-html[data-theme="light"] .brotherhood-title { color: #080808 !important; }
+html[data-theme="light"] .brotherhood-title { color: #000000 !important; }
 
 /* Feature cards in section-dark-3 become white bg on light mode */
 html[data-theme="light"] .section-dark-3 {
   background: #f8f6f3 !important;
-  color: #080808 !important;
+  color: #000000 !important;
 }
 html[data-theme="light"] .section-dark-3 .section-title,
 html[data-theme="light"] .section-dark-3 h2,
-html[data-theme="light"] .section-dark-3 h3 { color: #080808 !important; }
-html[data-theme="light"] .section-dark-3 p  { color: rgba(8,8,8,0.65) !important; }
+html[data-theme="light"] .section-dark-3 h3 { color: #000000 !important; }
+html[data-theme="light"] .section-dark-3 p  { color: rgba(0,0,0,0.65) !important; }
 html[data-theme="light"] .section-dark-3 .eyebrow { color: var(--gold) !important; }
 html[data-theme="light"] .section-dark-3 .feature-card {
   background: #ffffff !important;
   border-color: rgba(0,0,0,0.08) !important;
 }
-html[data-theme="light"] .section-dark-3 .feature-card h3 { color: #080808 !important; }
-html[data-theme="light"] .section-dark-3 .feature-card p  { color: rgba(8,8,8,0.6) !important; }
+html[data-theme="light"] .section-dark-3 .feature-card h3 { color: #000000 !important; }
+html[data-theme="light"] .section-dark-3 .feature-card p  { color: rgba(0,0,0,0.6) !important; }
 html[data-theme="light"] .section-dark-3 .card-icon       { color: var(--gold) !important; }
 
 /* Gallery section headings in light */
 html[data-theme="light"] .section-dark-2 {
   background: #efefef !important;
-  color: #080808 !important;
+  color: #000000 !important;
 }
 html[data-theme="light"] .section-dark-2 .section-title,
 html[data-theme="light"] .section-dark-2 h2,
 html[data-theme="light"] .section-dark-2 h3,
-html[data-theme="light"] .section-dark-2 .eyebrow { color: #080808 !important; }
+html[data-theme="light"] .section-dark-2 .eyebrow { color: #000000 !important; }
 html[data-theme="light"] .section-dark-2 .eyebrow  { color: var(--gold) !important; }
 
 /* ── WOMEN'S: Becoming Her BLACK in light mode ───────────────── */
-html[data-theme="light"] .becoming-her-title { color: #080808 !important; }
+html[data-theme="light"] .becoming-her-title { color: #000000 !important; }
 
 /* ── WELCOME VIDEO WRAP ───────────────────────────────────────── */
 .welcome-video-wrap {
@@ -3033,15 +2990,13 @@ html[data-theme="light"] .becoming-her-title { color: #080808 !important; }
 }
 .welcome-video-iframe {
   position: absolute;
-  top: 50%; left: 50%;
+  top: 30%; left: 50%;
   width: 177.78%; /* 16:9 ratio oversized to fill any shape */
   height: 100%;
   min-width: 100%;
   min-height: 56.25%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -30%);
   border: none;
-  pointer-events: none;
-  object-fit: cover;
 }
 
 /* ── MINIMAL EVENT CARDS (no images) ─────────────────────────── */
@@ -3167,10 +3122,10 @@ html[data-theme="light"] .evt-ghost-day       { color: rgba(0,0,0,0.04) !importa
 html[data-theme="light"] .evt-card-minimal:hover .evt-ghost-day { color: rgba(0,0,0,0.08) !important; }
 html[data-theme="light"] .evt-minimal-dow     { color: rgba(0,0,0,0.85) !important; }
 html[data-theme="light"] .evt-minimal-mon     { color: rgba(0,0,0,0.35) !important; }
-html[data-theme="light"] .evt-minimal-title   { color: #080808 !important; }
+html[data-theme="light"] .evt-minimal-title   { color: #000000 !important; }
 html[data-theme="light"] .evt-minimal-meta    { color: rgba(0,0,0,0.38) !important; }
 html[data-theme="light"] .evt-minimal-desc    { color: rgba(0,0,0,0.45) !important; }
-html[data-theme="light"] .evt-minimal-line    { background: #080808 !important; }
+html[data-theme="light"] .evt-minimal-line    { background: #000000 !important; }
 
 /* ── COUNTDOWN LIVE BUTTON ───────────────────────────────────── */
 #cd-live-btn-wrap {
@@ -3229,11 +3184,11 @@ html[data-theme="light"] .evt-minimal-line    { background: #080808 !important; 
 
 /* Light mode calendar toggle */
 html[data-theme="light"] .gcal-toggle-btn {
-  color: rgba(8,8,8,0.5);
+  color: rgba(0,0,0,0.5);
   border-color: rgba(0,0,0,0.12);
 }
 html[data-theme="light"] .gcal-toggle-btn:hover {
-  color: #080808;
+  color: #000000;
   border-color: rgba(0,0,0,0.35);
   background: rgba(0,0,0,0.03);
 }
@@ -3265,7 +3220,7 @@ html[data-theme="light"] #nav .nav-dropdown a:focus,
 html[data-theme="light"] #nav .nav-dropdown a:active,
 html[data-theme="light"] #nav .nav-dropdown [role="menuitem"],
 html[data-theme="light"] #nav .nav-dropdown [role="menuitem"]:hover {
-  color: #080808 !important;
+  color: #000000 !important;
   background-color: transparent !important;
 }
 html[data-theme="light"] #nav .nav-dropdown a:hover,
@@ -3273,7 +3228,7 @@ html[data-theme="light"] #nav .nav-dropdown a:focus {
   background-color: rgba(0,0,0,0.04) !important;
 }
 html[data-theme="light"] #nav .nav-dropdown .dd-dash {
-  color: #080808 !important;
+  color: #000000 !important;
   opacity: 0.35;
 }
 
@@ -3332,12 +3287,13 @@ html[data-theme="light"] #nav .nav-dropdown .dd-dash {
 /* Override: remove the rule that forced icons white in light mode when not scrolled.
    The old rule "html[data-theme=light] #nav:not(.scrolled) .nav-icon-btn { color:#fff !important }"
    is why search/toggle were invisible. We fix it here with a stronger selector. */
-html[data-theme="light"] #nav:not(.scrolled) .nav-icon-btn {
-  color: #1a1a1a !important; /* dark icons on light/transparent nav */
+/* Before scroll, the nav floats transparently over the dark hero
+   image in BOTH themes — so icons must stay white in both themes
+   until the nav gets a solid background on scroll. */
+#nav:not(.scrolled) .nav-icon-btn {
+  color: #ffffff !important;
 }
-html[data-theme="dark"] #nav:not(.scrolled) .nav-icon-btn {
-  color: #ffffff !important; /* white icons on dark/transparent nav */
-}
+#nav.scrolled .nav-icon-btn { color: var(--text) !important; }
 
 /* Hamburger spans — always contrasting vs background */
 .nav-hamburger {
@@ -3352,13 +3308,11 @@ html[data-theme="dark"] #nav:not(.scrolled) .nav-icon-btn {
   border-radius: 2px;
   transition: transform 0.35s var(--ease), opacity 0.3s;
 }
-/* Dark mode nav (transparent) — white hamburger */
-html[data-theme="dark"] .nav-hamburger span { background: #ffffff; }
-/* Light mode nav (transparent) — dark hamburger */
-html[data-theme="light"] .nav-hamburger span { background: #1a1a1a; }
+/* Before scroll — transparent nav floats over the dark hero in
+   BOTH themes, so the hamburger stays white until scrolled. */
+#nav:not(.scrolled) .nav-hamburger span { background: #ffffff; }
 /* Once scrolled, use theme text color */
-html[data-theme="light"] #nav.scrolled .nav-hamburger span { background: var(--text); }
-html[data-theme="dark"]  #nav.scrolled .nav-hamburger span { background: var(--text); }
+#nav.scrolled .nav-hamburger span { background: var(--text); }
 
 /* ── FIX: MOBILE MENU TEXT — dark text in light mode ──────── */
 html[data-theme="light"] #mobile-menu {
@@ -3366,13 +3320,13 @@ html[data-theme="light"] #mobile-menu {
 }
 html[data-theme="light"] .mobile-nav-links a {
   color: var(--ink) !important;
-  border-bottom-color: rgba(8,8,8,0.1) !important;
+  border-bottom-color: rgba(0,0,0,0.1) !important;
 }
 html[data-theme="light"] .mobile-nav-links a:hover {
   color: var(--gold) !important;
 }
 html[data-theme="light"] .mobile-menu-footer {
-  border-top-color: rgba(8,8,8,0.1) !important;
+  border-top-color: rgba(0,0,0,0.1) !important;
 }
 
 /* Dark mode mobile menu — always white text */
@@ -3672,12 +3626,284 @@ html[data-theme="dark"] .mobile-nav-links a { color: rgba(255,255,255,0.85); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* ── WOMEN'S VIDEO — no autoplay visual cue ───────────────── */
-.hero-video-iframe { pointer-events: none; }
+/* Women's video is click-to-play — must stay clickable (see rule above). */
 
 /* ── PRINT STYLES ──────────────────────────────────────────── */
 @media print {
   #nav, #mobile-menu, #page-loader, #cursor-dot, #cursor-ring,
   #scroll-progress, #live-sticky, .hero-video-wrap { display: none !important; }
   body { color: #000; background: #fff; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DEFINITIVE FIXES — buttons, modals, search, mobile, hero video
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── 1. UNIFIED BUTTON SYSTEM ─────────────────────────────────
+   Every button variant now behaves the same, predictable way:
+   on hover the fill slides to white and the label turns ink-black.
+   Stacking is hardened so the label can never be covered by the
+   sliding fill or a ripple. This removes every "text disappears
+   on hover" bug across the whole site in one consistent rule. ── */
+.btn {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn::before { z-index: 1; pointer-events: none; }
+.btn > span { position: relative; z-index: 2; pointer-events: none; display: inline-flex; align-items: center; gap: 0.4em; }
+.ripple-circle { z-index: 1; }
+
+.btn-solid:hover,
+.btn-ghost:hover,
+.btn-outline-dark:hover,
+.btn-dark:hover,
+.footer-btns .btn-ghost:hover,
+#cd-live-btn:hover {
+  color: #000000 !important;
+}
+.btn-solid::before,
+.btn-ghost::before,
+.btn-outline-dark::before,
+.btn-dark::before {
+  background: #ffffff !important;
+}
+
+/* .btn-ghost assumes a dark backdrop by default (white text/border).
+   Wherever it actually sits on a permanently-light section, flip it
+   to dark ink so it's readable in its resting state too. */
+.section-light .btn-ghost,
+.section-light-2 .btn-ghost,
+.modal-card .btn-ghost {
+  color: var(--ink) !important;
+  border-color: rgba(0,0,0,0.35) !important;
+}
+
+/* .giving-card flips to a dark card in dark mode (by design), so its
+   outline buttons need to flip to white text there too. */
+html[data-theme="dark"] .giving-card .btn-outline-dark {
+  color: #ffffff !important;
+  border-color: rgba(255,255,255,0.35) !important;
+}
+html[data-theme="dark"] .giving-card .btn-outline-dark::before {
+  background: #ffffff !important;
+}
+
+/* ── 2. MODALS ARE ALWAYS A LIGHT CARD — force dark ink text
+   regardless of site theme. This fixes "We're Believing With You",
+   the connect-modal heading, and confidentiality text turning
+   near-invisible white-on-white whenever the global theme is dark. ── */
+.modal-card h1, .modal-card h2, .modal-card h3, .modal-card h4,
+.modal-card p, .modal-card label, .modal-card .modal-confidential {
+  color: var(--ink) !important;
+}
+.modal-card .modal-eyebrow { color: var(--gold) !important; }
+.modal-field input, .modal-field textarea, .modal-field select {
+  color: var(--ink) !important;
+  background: #fff !important;
+}
+
+/* ── 3. VIEW FULL CALENDAR — .evt-section is dark by default and
+   only turns light in light theme, so the button text must follow: */
+html[data-theme="light"] .gcal-view-btn {
+  color: var(--ink) !important;
+  border-color: rgba(0,0,0,0.35) !important;
+}
+html:not([data-theme="light"]) .gcal-view-btn {
+  color: #ffffff !important;
+  border-color: rgba(255,255,255,0.35) !important;
+}
+
+/* ── 4. SEARCH ICON / THEME TOGGLE already fixed above (pre-scroll
+   white); this covers the scrolled-state light-theme icon color. */
+html[data-theme="light"] #nav.scrolled .search-open-btn,
+html[data-theme="light"] #nav.scrolled #theme-toggle {
+  color: var(--ink) !important;
+}
+
+/* ── 5. LANGUAGE TOGGLE ───────────────────────────────────────── */
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: none;
+}
+.lang-toggle button {
+  background: none;
+  border: none;
+  padding: 4px 6px;
+  color: inherit;
+  opacity: 0.45;
+  cursor: none;
+  transition: opacity 0.2s;
+  font: inherit;
+}
+.lang-toggle button.active { opacity: 1; }
+.lang-toggle button:hover { opacity: 0.8; }
+.lang-toggle .lang-sep { opacity: 0.3; }
+
+/* ══════════════════════════════════════════════════════════════
+   CINEMATIC HERO VIDEO (homepage)
+   ══════════════════════════════════════════════════════════════ */
+.hero-bg { opacity: 1; transition: opacity 1.3s var(--ease); }
+.page-hero.video-active .hero-bg { opacity: 0; }
+.hero-yt-wrap {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 100vw; height: 56.25vw;      /* 16:9 */
+  min-height: 100vh; min-width: 177.78vh;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.4s var(--ease);
+  z-index: 0;
+}
+.page-hero.video-active .hero-yt-wrap { opacity: 1; }
+.hero-yt-wrap iframe {
+  width: 100%; height: 100%; border: 0; display: block;
+}
+.page-hero.video-active .hero-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.1) 45%, rgba(0,0,0,0.05) 100%);
+}
+.hero-video-badge {
+  position: absolute;
+  bottom: 2rem; right: 2rem;
+  z-index: 3;
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  opacity: 0;
+  transition: opacity 0.8s var(--ease) 0.6s;
+  pointer-events: none;
+}
+.page-hero.video-active .hero-video-badge { opacity: 1; }
+.hero-video-badge .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+  animation: heroBadgePulse 1.8s ease-in-out infinite;
+}
+@keyframes heroBadgePulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.4;transform:scale(0.7);} }
+
+@media (max-width: 767px) {
+  .hero-yt-wrap { display: none; } /* save mobile data — poster only */
+  .hero-video-badge { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-yt-wrap { display: none; }
+}
+
+/* Keep faces/heads in frame on the ministry hero + welcome videos */
+/* Top-bias framing for these two iframes is handled via top/transform in their main rules. */
+
+/* ── Mission/Vision pillar photos — bias crop toward the top so
+   faces aren't cut off, and give more room on small screens. ── */
+.pillar-image img { object-position: center 12% !important; }
+
+/* ══════════════════════════════════════════════════════════════
+   MOBILE EXCELLENCE — comprehensive phone-first pass
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  html { -webkit-text-size-adjust: 100%; }
+  body { overflow-x: hidden; }
+
+  /* Restore real tap targets — desktop's custom cursor system
+     has no place on touch devices. */
+  * { cursor: auto !important; }
+  #cursor-dot, #cursor-ring { display: none !important; }
+
+  /* ---- Nav ---- */
+  #nav { padding: 0.85rem 1.1rem; }
+  .nav-logo img { height: 28px; }
+  .nav-logo .logo-fallback { font-size: 0.92rem; }
+  .nav-icons { gap: 0.85rem; }
+  .nav-icon-btn { width: 40px; height: 40px; }
+
+  /* ---- Mobile menu ---- */
+  #mobile-menu { padding: 5.5rem 1.5rem 2rem; }
+  #mobile-menu .nav-links a,
+  #mobile-menu .mobile-menu-link {
+    font-size: 1.5rem;
+    padding: 0.85rem 0;
+    display: block;
+    min-height: 44px;
+  }
+  .mobile-ministries-list a { min-height: 44px; display: flex; align-items: center; }
+
+  /* ---- Hero ---- */
+  .hero { min-height: 100svh; padding: 0 1.25rem; }
+  .hero-h1, .hero-headline { font-size: clamp(2.1rem, 9vw, 3.2rem); line-height: 1.08; }
+  .hero-sub, .hero-subhead { font-size: 1rem; line-height: 1.55; max-width: 32ch; }
+  .hero-cta-row, .hero-actions { flex-direction: column; width: 100%; gap: 0.75rem; }
+  .hero-cta-row .btn, .hero-actions .btn { width: 100%; min-height: 52px; font-size: 0.95rem; }
+  .hero-bg { background-position: center 22% !important; }
+
+  /* ---- Typography scale ---- */
+  .section-title { font-size: clamp(1.7rem, 7vw, 2.4rem); line-height: 1.15; }
+  .eyebrow { font-size: 0.68rem; letter-spacing: 0.14em; }
+  .body-text { font-size: 0.98rem; line-height: 1.7; }
+  .section-pad { padding: 3.5rem 0; }
+  .section-pad-sm { padding: 2.5rem 0; }
+  .container { padding-left: 1.25rem; padding-right: 1.25rem; }
+
+  /* ---- Buttons: real touch targets everywhere ---- */
+  .btn { min-height: 48px; padding: 0.85rem 1.6rem; font-size: 0.92rem; }
+
+  /* ---- Grids stack cleanly with breathing room ---- */
+  .pillar-grid, .feature-grid, .ministry-grid, .stats-grid,
+  .value-grid, .gallery-grid, .cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .pillar-image { min-height: 220px; aspect-ratio: 4/3; }
+
+  /* ---- Service cards ---- */
+  .service-card { padding: 1.75rem 1.25rem; }
+  .service-time { font-size: 2.1rem; }
+
+  /* ---- Events ---- */
+  .evt-carousel-wrap { padding: 0 1.25rem; }
+  .evt-card { min-width: 82vw; }
+  #evt-prev, #evt-next { width: 40px; height: 40px; }
+
+  /* ---- Countdown ---- */
+  .cd-grid { gap: 0.6rem; }
+  .cd-num { font-size: clamp(1.8rem, 8vw, 2.6rem); }
+
+  /* ---- Footer ---- */
+  .footer-cols { grid-template-columns: 1fr !important; gap: 2.25rem; text-align: left; }
+  .footer-btns { flex-direction: column; width: 100%; }
+  .footer-btns .btn { width: 100%; }
+  .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+
+  /* ---- Modals ---- */
+  .modal-card { width: 92vw; padding: 2rem 1.5rem; max-height: 88vh; overflow-y: auto; }
+  .modal-title { font-size: 1.5rem; }
+  .modal-field input, .modal-field textarea { font-size: 16px; } /* prevents iOS zoom-on-focus */
+
+  /* ---- Search overlay ---- */
+  #search-overlay { padding: 5rem 1.25rem 2rem; }
+  #search-input { font-size: 1.6rem; }
+  .search-label { font-size: 0.7rem; }
+
+  /* ---- Nav dropdown (ministries) on mobile becomes an in-place list ---- */
+  .nav-dropdown-menu { position: static; box-shadow: none; width: 100%; padding-left: 1rem; }
+}
+
+@media (max-width: 420px) {
+  .hero-h1, .hero-headline { font-size: clamp(1.9rem, 10vw, 2.6rem); }
+  .container { padding-left: 1rem; padding-right: 1rem; }
+  .btn { padding: 0.8rem 1.3rem; font-size: 0.88rem; }
+}
+
+/* Comfortable landscape phones */
+@media (max-width: 900px) and (max-height: 480px) and (orientation: landscape) {
+  .hero { min-height: 100vh; padding: 4.5rem 1.5rem 2rem; }
 }
