@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Block server files and secrets
+Disallow: /server.js
+Disallow: /.env
+Disallow: /service-account.json
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://lhcoshawa.ca/sitemap.xml

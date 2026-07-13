@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html data-theme="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<meta content="#080808" name="theme-color"/>
+<title>Fellowship | Lighthouse Church Oshawa — Life Is Better Together</title>
+<meta content="Fellowship at Lighthouse Church Oshawa. Community groups, shared meals, and authentic relationships. Life is better together." name="description"/>
+<meta content="Fellowship, Lighthouse Church, Oshawa, community, belonging, life together" name="keywords"/>
+<meta content="Fellowship | Lighthouse Church Oshawa — Life Is Better Together" property="og:title"/>
+<meta content="Fellowship at Lighthouse Church Oshawa. Community groups, shared meals, and authentic relationships. Life is better together." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://lhcoshawa.ca/fellowship.html" property="og:url"/>
+<meta content="en_CA" property="og:locale"/>
+<meta content="Lighthouse Church Oshawa" property="og:site_name"/>
+<meta content="https://lh3.googleusercontent.com/d/15nF_hgVVnD4MapxXuzGXncJXqKz8RCFm" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="@lhcoshawa" name="twitter:creator"/>
+<meta content="@lhcoshawa" name="twitter:site"/>
+<meta content="https://lh3.googleusercontent.com/d/15nF_hgVVnD4MapxXuzGXncJXqKz8RCFm" name="twitter:image"/>
+<meta content="Lighthouse Christian Fellowship" name="author"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://lhcoshawa.ca/fellowship.html" rel="canonical"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,600&amp;display=swap" rel="preload"/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,600&amp;display=swap" rel="stylesheet"/>
+<link href="https://lh3.googleusercontent.com/d/1vhiwXZNViO4mbnkXF1VzT7mFLdoLwfUL" rel="icon" type="image/png"/>
+<link href="styles.css" rel="stylesheet"/>
+<style>
+    /* Fellowship-specific overrides */
+    body { overflow: hidden; }
+    @media (max-width: 768px) { body { overflow-y: auto; } }
+
+    .fellowship-page {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    @media (max-width: 768px) {
+      .fellowship-page {
+        position: relative;
+        min-height: 100vh;
+        padding: 6rem 2rem 4rem;
+      }
+    }
+
+    .f-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.18) saturate(0);
+      transform: scale(1.06);
+      transition: transform 10s cubic-bezier(0.16,1,0.3,1);
+    }
+    .f-bg.loaded { transform: scale(1); }
+
+    .f-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.75) 100%);
+    }
+
+    /* Center content */
+    .f-center {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      opacity: 0;
+      animation: fReveal 1.2s cubic-bezier(0.16,1,0.3,1) 0.8s forwards;
+    }
+    @keyframes fReveal {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .f-eyebrow {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.48em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 1.5rem;
+    }
+
+    .f-h1 {
+      font-family: 'Open Sans', sans-serif;
+      font-size: clamp(5rem, 14vw, 11rem);
+      font-weight: 300;
+      line-height: 0.88;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 1.8rem;
+    }
+
+    .f-tagline {
+      font-family: 'Open Sans', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 3rem;
+    }
+
+    .f-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Vertical text — left side */
+    .f-vertical {
+      position: fixed;
+      left: 3rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+      transform-origin: center;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      white-space: nowrap;
+      z-index: 10;
+      opacity: 0;
+      animation: fReveal 1s cubic-bezier(0.16,1,0.3,1) 1.4s forwards;
+    }
+    @media (max-width: 768px) { .f-vertical { display: none; } }
+
+    /* Social links — right side */
+    .f-social {
+      position: fixed;
+      right: 3rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      z-index: 10;
+      opacity: 0;
+      animation: fReveal 1s cubic-bezier(0.16,1,0.3,1) 1.6s forwards;
+    }
+    .f-social::before, .f-social::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 50px;
+      background: rgba(255,255,255,0.12);
+    }
+    .f-social a {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.48rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      transition: color 0.3s;
+    }
+    .f-social a:hover { color: rgba(255,255,255,0.9); }
+    @media (max-width: 768px) { .f-social { display: none; } }
+
+    /* Corner nav links — bottom left */
+    .f-corner {
+      position: fixed;
+      bottom: 3rem;
+      left: clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      gap: 2.5rem;
+      z-index: 10;
+      opacity: 0;
+      animation: fReveal 1s cubic-bezier(0.16,1,0.3,1) 1.5s forwards;
+    }
+    .f-corner a {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.52rem;
+      font-weight: 700;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      transition: color 0.3s;
+      position: relative;
+    }
+    .f-corner a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: rgba(255,255,255,0.6);
+      transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .f-corner a:hover { color: rgba(255,255,255,0.9); }
+    .f-corner a:hover::after { width: 100%; }
+    @media (max-width: 768px) { .f-corner { display: none; } }
+
+    /* Thin horizontal rule accent */
+    .f-rule {
+      width: 40px;
+      height: 1px;
+      background: rgba(201,169,110,0.6);
+      margin: 0 auto 1.8rem;
+    }
+
+    /* Grain texture overlay for cinematic feel */
+    .f-grain {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 128px 128px;
+    }
+  </style>
+<script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","url":"https://lhcoshawa.ca/fellowship.html","name":"Fellowship — Lighthouse Church Oshawa","description":"Community groups, shared meals, and authentic relationships. Life is better together.","isPartOf":{"@type":"WebSite","url":"https://lhcoshawa.ca"}}
+  </script>
+</head>
+<body>
+<div aria-hidden="true" id="page-loader">
+<div class="loader-logo">Lighthouse Church</div>
+<div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+</div>
+<div aria-hidden="true" id="scroll-progress"></div>
+<div aria-hidden="true" id="cursor-dot"></div>
+<div aria-hidden="true" id="cursor-ring"></div>
+<!-- FIXED NAV -->
+<header id="nav" role="banner">
+<a aria-label="Lighthouse Church — Home" class="nav-logo" href="index.html">
+<img alt="Lighthouse Church" class="nav-logo-img" loading="eager" src="https://lh3.googleusercontent.com/d/1FlwmXedUBVWrIdYQppeLKOXL21_4LFs0"/>
+<span class="logo-fallback">Lighthouse Church</span>
+</a>
+<nav aria-label="Main navigation" class="nav-links" role="navigation">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<div class="nav-dropdown-wrap">
+<button aria-haspopup="true" id="ministries-btn">Ministries</button>
+<div class="nav-dropdown" id="ministries-dropdown" role="menu">
+<a href="womens-ministry.html" role="menuitem"><span class="dd-dash">—</span> Women's Ministry</a>
+<a href="mens-ministry.html" role="menuitem"><span class="dd-dash">—</span> Men's Ministry</a>
+<a href="childrens-ministry.html" role="menuitem"><span class="dd-dash">—</span> Children's Ministry</a>
+<a href="fellowship.html" role="menuitem"><span class="dd-dash">—</span> Fellowship Churches</a>
+</div>
+</div>
+<a href="giving.html">Give</a>
+</nav>
+<div class="nav-icons">
+<div aria-label="Language" class="lang-toggle" role="group">
+<button aria-pressed="true" class="active" data-lang="en" type="button">EN</button>
+<span class="lang-sep">/</span>
+<button aria-pressed="false" data-lang="fr" type="button">FR</button>
+</div>
+<button aria-label="Toggle theme" class="nav-icon-btn theme-toggle">
+<svg class="theme-moon" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+<svg class="theme-sun" fill="none" stroke="currentColor" style="display:none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5" stroke-width="1.5"></circle><path d="M12 2v2m0 16v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke-linecap="round" stroke-width="1.5"></path></svg>
+</button>
+<button aria-label="Open search" class="nav-icon-btn search-open-btn">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke-width="1.5"></circle><path d="m21 21-4-4" stroke-linecap="round" stroke-width="1.5"></path></svg>
+</button>
+<button aria-label="Open menu" class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</div>
+</header>
+<div aria-label="Navigation menu" aria-modal="true" id="mobile-menu" role="dialog">
+<nav class="mobile-nav-links">
+<a href="index.html">Home</a><a href="about.html">About</a>
+<a href="womens-ministry.html">Women's Ministry</a><a href="mens-ministry.html">Men's Ministry</a>
+<a href="childrens-ministry.html">Children's Ministry</a><a href="fellowship.html">Fellowship Churches</a>
+<a href="giving.html">Give</a>
+</nav>
+</div>
+<div aria-label="Search" aria-modal="true" id="search-overlay" role="dialog">
+<button aria-label="Close search" class="search-close">×</button>
+<div class="search-wrap">
+<p class="search-label">Search</p>
+<input autocomplete="off" id="search-input" placeholder="Type to search…" type="search"/>
+<div id="search-results"></div>
+</div>
+</div>
+<!-- GRAIN OVERLAY -->
+<div aria-hidden="true" class="f-grain"></div>
+<!-- MAIN FELLOWSHIP SCENE -->
+<main>
+<section aria-label="Fellowship at Lighthouse Church" class="fellowship-page">
+<!-- IMAGE: Fellowship hero — Men's Ministry banner / fellowship gathering -->
+<div aria-label="Lighthouse Church fellowship gathering" class="f-bg" id="f-bg" role="img" style="background-image:url('https://lh3.googleusercontent.com/d/1LFB4Ol_f2lAaYesL6lD9bG3F2yCyk1Sw')"></div>
+<div aria-hidden="true" class="f-overlay"></div>
+<!-- Center content -->
+<div class="f-center">
+<p class="f-eyebrow" data-i18n="fel-0">Lighthouse Church · Oshawa, ON</p>
+<div aria-hidden="true" class="f-rule"></div>
+<h1 class="f-h1" data-i18n="fel-1">Fellowship<br/><span style="font-size:0.5em;letter-spacing:0.15em;">Churches</span></h1>
+<p class="f-tagline" data-i18n="fel-2"><em>Life is better together.</em></p>
+<div class="f-btns">
+<a class="btn btn-ghost" href="index.html#times" onclick="window.location.href='index.html#times';return false;"><span data-i18n="fel-3">Join Us</span></a>
+<button aria-haspopup="dialog" class="btn btn-solid" data-connect=""><span data-i18n="fel-4">Connect</span></button>
+</div>
+</div>
+</section>
+<!-- Vertical address text — left -->
+<div aria-hidden="true" class="f-vertical">555 Wentworth St E · Oshawa · Ontario</div>
+<!-- Social links — right -->
+<nav aria-label="Social media links" class="f-social">
+<a aria-label="Instagram" href="https://www.instagram.com/lhcoshawa/" rel="noopener noreferrer" target="_blank">Instagram</a>
+<a aria-label="YouTube" href="https://www.youtube.com/@lhcoshawa" rel="noopener noreferrer" target="_blank">YouTube</a>
+<a aria-label="TikTok" href="https://www.tiktok.com/@lhcoshawa" rel="noopener noreferrer" target="_blank">TikTok</a>
+</nav>
+<!-- Corner nav links — bottom left -->
+<nav aria-label="Quick navigation" class="f-corner">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="giving.html">Give</a>
+</nav>
+</main>
+<!-- PRAYER MODAL -->
+<!-- PRAYER MODAL -->
+<div aria-label="Submit a prayer request" aria-modal="true" id="prayer-modal" role="dialog">
+<div class="modal-card">
+<button aria-label="Close modal" class="modal-close">×</button>
+<span class="modal-eyebrow">Prayer</span>
+<h2 class="modal-title">We're Believing With You</h2>
+<p class="modal-confidential">Your prayer request will be treated with care and confidentiality.</p>
+<form class="modal-form" id="prayer-form" novalidate="">
+<div class="modal-field"><label for="prayer-name">Name</label><input id="prayer-name" name="name" placeholder="Your full name" required="" type="text"/></div>
+<div class="modal-field"><label for="prayer-email">Email</label><input id="prayer-email" name="email" placeholder="your@email.com" required="" type="email"/></div>
+<div class="modal-field"><label for="prayer-req">Prayer Request</label><textarea id="prayer-req" name="prayer" placeholder="Share your prayer request…" required="" rows="5"></textarea></div>
+<button class="btn btn-outline-dark" style="width:100%;margin-top:0.5rem;" type="submit"><span>Submit Request</span></button>
+</form>
+<div class="modal-success" id="prayer-success">
+<div aria-hidden="true" class="check-circle">✓</div>
+<h3 style="font-family:var(--font-serif);font-size:1.8rem;font-weight:300;color:var(--ink);margin-bottom:0.75rem;">Thank You</h3>
+<p style="font-size:0.9rem;color:rgba(0,0,0,0.6);">We are believing with you.</p>
+</div>
+</div>
+</div>
+<!-- CONNECT MODAL -->
+<div aria-label="Connect with us" aria-modal="true" id="connect-modal" role="dialog">
+<div class="modal-card">
+<button aria-label="Close modal" class="modal-close connect-close">×</button>
+<span class="modal-eyebrow">Connect</span>
+<h2 class="modal-title">We'd Love to Hear From You</h2>
+<p style="font-size:0.82rem;color:var(--text-2);margin-bottom:1.5rem;line-height:1.7;">Whether you have a question, want to get involved, or just want to say hi — we're here.</p>
+<form class="modal-form" id="connect-form" novalidate="">
+<div class="modal-field"><label for="cn-name">Name</label><input id="cn-name" name="name" placeholder="Your full name" required="" type="text"/></div>
+<div class="modal-field"><label for="cn-email">Email</label><input id="cn-email" name="email" placeholder="your@email.com" required="" type="email"/></div>
+<div class="modal-field"><label for="cn-phone">Phone <span style="font-weight:400;opacity:0.5;">(optional)</span></label><input id="cn-phone" name="phone" placeholder="(905) 000-0000" type="tel"/></div>
+<div class="modal-field"><label for="cn-msg">How can we help you?</label><textarea id="cn-msg" name="message" placeholder="Tell us about yourself, ask a question, or share how we can serve you…" required="" rows="4"></textarea></div>
+<div class="modal-field"><label for="cn-heard">How did you hear about us? <span style="font-weight:400;opacity:0.5;">(optional)</span></label>
+<select id="cn-heard" name="source" style="width:100%;padding:0.75rem 1rem;border:1px solid var(--border);background:var(--bg-2);color:var(--text);font-family:var(--font-sans);font-size:0.82rem;border-radius:2px;">
+<option value="">Select one…</option>
+<option value="friend">A friend or family member</option>
+<option value="instagram">Instagram</option>
+<option value="youtube">YouTube</option>
+<option value="tiktok">TikTok</option>
+<option value="google">Google Search</option>
+<option value="walked-by">Walked by the church</option>
+<option value="other">Other</option>
+</select>
+</div>
+<button class="btn btn-solid" style="width:100%;margin-top:0.75rem;" type="submit"><span>Send Message</span></button>
+</form>
+<div class="modal-success" id="connect-success">
+<div aria-hidden="true" class="check-circle">✓</div>
+<h3 style="font-family:var(--font-serif);font-size:1.8rem;font-weight:300;color:var(--ink);margin-bottom:0.75rem;">Thank You!</h3>
+<p style="font-size:0.9rem;color:rgba(0,0,0,0.6);">We'll be in touch soon.</p>
+</div>
+</div>
+</div>
+<script src="main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const bg = document.getElementById('f-bg');
+    if (bg) {
+      const url = bg.style.backgroundImage.replace(/url\(['"]?|['"]?\)/g, '');
+      const img = new Image();
+      img.onload = () => bg.classList.add('loaded');
+      img.src = url;
+    }
+  });
+</script>
+</body>
+</html>
