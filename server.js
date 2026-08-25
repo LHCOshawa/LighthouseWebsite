@@ -34,7 +34,7 @@ app.use(helmet({
       styleSrc:   ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
       fontSrc:    ["'self'", 'https://fonts.gstatic.com'],
       imgSrc:     ["'self'", 'data:', 'https://lh3.googleusercontent.com', 'https://i.ytimg.com', 'https://yt3.ggpht.com'],
-      frameSrc:   ["'self'", 'https://www.youtube.com', 'https://www.youtube-nocookie.com', 'https://drive.google.com', 'https://calendar.google.com'],
+      frameSrc:   ["'self'", 'https://www.youtube.com', 'https://www.youtube-nocookie.com', 'https://drive.google.com', 'https://calendar.google.com', 'https://www.google.com'],
       connectSrc: ["'self'", 'https://www.googleapis.com', 'https://calendar.google.com', 'https://corsproxy.io', 'https://api.allorigins.win', 'https://www.youtube.com', 'https://s.ytimg.com'],
       objectSrc:  ["'none'"],
       baseUri:    ["'self'"],

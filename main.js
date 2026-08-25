@@ -47,7 +47,7 @@ const FR = {
     submit: 'Envoyer le message',
     thankYou: 'Merci!', thankYouBody: 'Nous vous contacterons bientôt.'
   },
-  footer: { prayerNote: 'Prière à 10 h · 18 h · 18 h 30', rights: 'Église Lighthouse. Tous droits réservés.' }
+  footer: { prayerNote: 'Les portes ouvrent une heure plus tôt pour la prière.', rights: 'Église Lighthouse. Tous droits réservés.' }
 };
 const EN_CACHE = {}; // populated on first load so we can always revert to true original English
 
@@ -64,7 +64,7 @@ const FR_CONTENT = {
   'idx-9': 'Donnez et faites une différence',
   'idx-10': 'Votre générosité fait avancer l\'Évangile et soutient notre mission d\'évangélisation, de formation de disciples et d\'implantation d\'églises ici à Oshawa et au-delà.',
   'idx-11': 'Horaires des cultes',
-  'idx-12': 'Lighthouse Church · Oshawa, ON',
+  'idx-12': 'Oshawa, Ontario',
   'idx-13': 'Horaires des cultes ↓',
   'idx-14': '▶ Regarder en direct',
   'idx-15': 'Suivre le culte du dimanche 11 h en direct',
@@ -194,6 +194,34 @@ const FR_CONTENT = {
   'wom-24': 'Soumettre une demande de prière',
   'wom-25': 'À venir',
   'kid-22': 'Se connecter avec nous',
+
+  /* ── NEW (2026 revision) ── */
+  'idx-23': 'Nous Visiter',
+  'idx-24': 'Obtenir l\'itinéraire',
+  'idx-25': 'Copier l\'adresse',
+  'idx-26': 'Les portes ouvrent une heure plus tôt pour la prière.',
+  'idx-27': 'Faire un don à Lighthouse Church',
+  'idx-29': 'Voir la page complète des dons',
+
+  'kid-23': 'Âges et programmes',
+  'kid-24': 'Pouponnière et Little Lambs',
+  'kid-25': 'Pouponnière',
+  'kid-26': '0 à 5 ans',
+  'kid-27': 'Un espace chaleureux et attentionné pour nos tout-petits — des nourrissons jusqu\'à 5 ans — pris en charge avec tendresse pendant que leur famille adore.',
+  'kid-28': 'Little Lambs',
+  'kid-29': '5 à 13 ans',
+  'kid-30': 'Un enseignement biblique adapté à l\'âge, la louange et des activités qui aident les enfants de 5 à 13 ans à grandir dans leur foi et leurs amitiés.',
+  'kid-31': 'Écrire à la pouponnière',
+  'kid-32': 'Écrire à Little Lambs',
+
+  'wom-1': 'Devenir Elle',
+  'wom-26': 'Prière',
+  'wom-27': 'Que Nos Sœurs Prient Pour Vous',
+  'wom-28': 'Peu importe ce que vous traversez, vous n\'avez pas à le porter seule. Si vous aimeriez parler à quelqu\'un ou qu\'une sœur marche à vos côtés, soumettez une demande de prière ci-dessous.',
+
+  'men-25': 'Prière',
+  'men-26': 'Que Nos Frères Prient Pour Vous',
+  'men-27': 'Peu importe la saison que vous traversez, vous n\'avez pas à la vivre seul. Si vous aimeriez parler à quelqu\'un ou qu\'un frère se tienne à vos côtés, soumettez une demande de prière ci-dessous.',
 };
 
 
@@ -383,8 +411,8 @@ if (nav) {
 }
 
 /* ── LOGO SWITCHING ─────────────────────────────────────────── */
-const DARK_LOGO  = 'https://lh3.googleusercontent.com/d/1FlwmXedUBVWrIdYQppeLKOXL21_4LFs0';
-const LIGHT_LOGO = 'https://lh3.googleusercontent.com/d/1vhiwXZNViO4mbnkXF1VzT7mFLdoLwfUL';
+const DARK_LOGO  = 'https://lh3.googleusercontent.com/d/1J9zIi3lGX3iqRYWvlwJdGg1oNc7F3jaS';
+const LIGHT_LOGO = 'https://lh3.googleusercontent.com/d/1C0lwwVaAQtQ_ijwPkMMki43dRvu2sXUy';
 
 function updateLogo() {
   const nav = document.getElementById('nav');
@@ -475,9 +503,72 @@ document.querySelectorAll('[data-prayer]').forEach(b => b.addEventListener('clic
 document.querySelectorAll('[data-connect]').forEach(b => b.addEventListener('click', openConnect));
 prayerModal?.addEventListener('click', e => { if (e.target === prayerModal) closePrayer(); });
 connectModal?.addEventListener('click', e => { if (e.target === connectModal) closeConnect(); });
-document.querySelectorAll('.modal-close').forEach(b => b.addEventListener('click', () => { closePrayer(); closeConnect(); }));
+document.querySelectorAll('.modal-close').forEach(b => b.addEventListener('click', () => { closePrayer(); closeConnect(); closeGive(); }));
 document.querySelectorAll('.connect-close').forEach(b => b.addEventListener('click', closeConnect));
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeSearch(); closePrayer(); closeConnect(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeSearch(); closePrayer(); closeConnect(); closeGive(); closeLightbox(); } });
+
+/* ── GIVE MODAL (quick-give popup, homepage) ──────────────────── */
+const giveModal = document.getElementById('give-modal');
+function openGive()  { giveModal?.classList.add('open'); }
+function closeGive() { giveModal?.classList.remove('open'); }
+document.querySelectorAll('[data-give]').forEach(b => b.addEventListener('click', openGive));
+giveModal?.addEventListener('click', e => { if (e.target === giveModal) closeGive(); });
+
+/* ── HORIZONTAL GALLERY CAROUSEL + LIGHTBOX (ministry pages) ──── */
+const lightbox = document.getElementById('gallery-lightbox');
+const lbImg    = document.getElementById('lightbox-img');
+let lbItems = [], lbIndex = 0;
+
+function openLightbox(items, i) {
+  if (!lightbox || !lbImg) return;
+  lbItems = items; lbIndex = i;
+  const img = items[i].querySelector('img');
+  if (!img) return;
+  lbImg.src = img.currentSrc || img.src; lbImg.alt = img.alt || '';
+  lightbox.classList.add('open');
+}
+function closeLightbox() { lightbox?.classList.remove('open'); }
+function lbStep(dir) {
+  if (!lbItems.length) return;
+  lbIndex = (lbIndex + dir + lbItems.length) % lbItems.length;
+  const img = lbItems[lbIndex].querySelector('img');
+  if (!img) return;
+  lbImg.src = img.currentSrc || img.src; lbImg.alt = img.alt || '';
+}
+lightbox?.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.querySelector('.lightbox-close')?.addEventListener('click', closeLightbox);
+document.querySelector('.lightbox-arrow.prev')?.addEventListener('click', () => lbStep(-1));
+document.querySelector('.lightbox-arrow.next')?.addEventListener('click', () => lbStep(1));
+document.addEventListener('keydown', e => {
+  if (!lightbox || !lightbox.classList.contains('open')) return;
+  if (e.key === 'ArrowLeft') lbStep(-1);
+  if (e.key === 'ArrowRight') lbStep(1);
+});
+
+function initGalleryCarousel(root) {
+  const track = root.querySelector('.gallery-scroll');
+  if (!track) return;
+  // The prev/next arrows sit in the section header (next to the title),
+  // not nested inside .gallery-carousel itself — search the whole section.
+  const scope = root.closest('section') || root.parentElement || root;
+  const prev = scope.querySelector('.gallery-prev'), next = scope.querySelector('.gallery-next');
+  function step() {
+    const item = track.querySelector('.gallery-item');
+    return item ? item.getBoundingClientRect().width + 16 : 300;
+  }
+  if (prev) prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+  if (next) next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+
+  const items = Array.from(track.querySelectorAll('.gallery-item'));
+  items.forEach((el, i) => {
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('role', 'button');
+    el.setAttribute('aria-label', 'View larger photo ' + (i + 1) + ' of ' + items.length);
+    el.addEventListener('click', () => openLightbox(items, i));
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(items, i); } });
+  });
+}
+document.querySelectorAll('.gallery-carousel').forEach(initGalleryCarousel);
 
 if (prayerForm) {
   prayerForm.addEventListener('submit', async e => {
@@ -599,7 +690,7 @@ const DAYS_FULL    = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday
 const DAYS_SHORT   = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
 
 const EVENT_IMAGES = {
-  logo:  'https://lh3.googleusercontent.com/d/1vhiwXZNViO4mbnkXF1VzT7mFLdoLwfUL',
+  logo:  'https://lh3.googleusercontent.com/d/1C0lwwVaAQtQ_ijwPkMMki43dRvu2sXUy',
   men:   'https://lh3.googleusercontent.com/d/1sVvOnArlTJCR0BaW6XKBF_PcJV-X1nlJ',
   women: 'https://lh3.googleusercontent.com/d/10XjWVZGre_im94tHaI7ERDMnADVy2MtD',
 };
@@ -670,15 +761,33 @@ function initEvtCarousel(track) {
   const wrap=track.parentElement;
   const prev=document.getElementById('evt-prev'), next=document.getElementById('evt-next');
   const dots=document.getElementById('evt-dots');
-  const cards=Array.from(track.querySelectorAll('.evt-card'));
+
+  // renderEvents() can call this twice in quick succession (an instant
+  // paint from cache, then again once the network fetch resolves with
+  // fresh data). Re-running the setup below every time stacked a second
+  // setInterval and a second set of prev/next/keydown/pointer listeners
+  // on the same elements, which made the carousel auto-advance too fast
+  // and jump around when clicked. Cards/dots still get rebuilt fresh
+  // each call (new events); navigation is wired up only once.
   let cur=0;
-  if(dots){dots.innerHTML='';cards.forEach((_,i)=>{const d=document.createElement('button');d.className='evt-dot'+(i===0?' active':'');d.setAttribute('aria-label',`Go to event ${i+1}`);d.addEventListener('click',()=>goTo(i));dots.appendChild(d);});}
-  function getW(){const c=cards[0];return c?c.offsetWidth+parseInt(getComputedStyle(track).gap||'24'):0;}
+  const cards=()=>Array.from(track.querySelectorAll('.evt-card'));
+  function getW(){const c=cards()[0];return c?c.offsetWidth+parseInt(getComputedStyle(track).gap||'24'):0;}
   function goTo(idx){
-    cur=Math.max(0,Math.min(idx,cards.length-1));
+    const n=cards().length;
+    cur=Math.max(0,Math.min(idx,n-1));
     track.style.transform=`translateX(-${getW()*cur}px)`;
     if(dots) dots.querySelectorAll('.evt-dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
   }
+  if(dots){
+    dots.innerHTML='';
+    cards().forEach((_,i)=>{const d=document.createElement('button');d.className='evt-dot'+(i===0?' active':'');d.setAttribute('aria-label',`Go to event ${i+1}`);d.addEventListener('click',()=>goTo(i));dots.appendChild(d);});
+  }
+  cur=0;
+  track.style.transform='translateX(0px)';
+
+  if(wrap.dataset.carouselInit==='1') return; // navigation already wired up — just refreshed cards/dots above
+  wrap.dataset.carouselInit='1';
+
   if(prev) prev.addEventListener('click',()=>goTo(cur-1));
   if(next) next.addEventListener('click',()=>goTo(cur+1));
   wrap.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')goTo(cur-1);if(e.key==='ArrowRight')goTo(cur+1);});
@@ -686,9 +795,9 @@ function initEvtCarousel(track) {
   wrap.addEventListener('pointerdown',e=>{sx=e.clientX;drag=true;wrap.setPointerCapture(e.pointerId);});
   wrap.addEventListener('pointermove',e=>{if(!drag)return;dDelta=e.clientX-sx;track.style.transition='none';track.style.transform=`translateX(-${getW()*cur-dDelta}px)`;});
   wrap.addEventListener('pointerup',()=>{if(!drag)return;drag=false;track.style.transition='';if(dDelta<-60)goTo(cur+1);else if(dDelta>60)goTo(cur-1);else goTo(cur);dDelta=0;});
-  let t=setInterval(()=>goTo((cur+1)%cards.length),6000);
-  wrap.addEventListener('pointerdown',()=>clearInterval(t));
-  goTo(0);
+  if(wrap._carouselTimer) clearInterval(wrap._carouselTimer);
+  wrap._carouselTimer=setInterval(()=>goTo((cur+1)%Math.max(cards().length,1)),6000);
+  wrap.addEventListener('pointerdown',()=>clearInterval(wrap._carouselTimer));
 }
 
 /* ── ICS FALLBACK ────────────────────────────────────────────── */
@@ -699,7 +808,19 @@ function parseICS(text) {
   const unfolded=text.replace(/\r\n[ \t]/g,'').replace(/\n[ \t]/g,'');
   unfolded.split(/BEGIN:VEVENT/).slice(1).forEach(block=>{
     const get=k=>{const m=block.match(new RegExp('(?:^|\\n)'+k+'(?:;[^:]*)?:([^\\r\\n]+)','im'));return m?m[1].trim():'';};
-    function parsedt(raw){if(!raw)return null;const v=raw.replace(/^[^:]+:/,'').trim();const y=+v.slice(0,4),mo=+v.slice(4,6)-1,d=+v.slice(6,8),h=v.length>8?+v.slice(9,11):0,mi=v.length>8?+v.slice(11,13):0;return new Date(y,mo,d,h,mi);}
+    function parsedt(raw){
+      if(!raw)return null;
+      const v=raw.replace(/^[^:]+:/,'').trim();
+      // Google's public ICS feed exports timed events in UTC ("Z" suffix).
+      // Building the Date from those digits as if they were LOCAL time
+      // silently shifted every event by 4-5 hours (Toronto's UTC offset),
+      // which could push events to the wrong day or drop them entirely
+      // once they were (incorrectly) considered already in the past.
+      const isUTC=v.endsWith('Z');
+      const y=+v.slice(0,4),mo=+v.slice(4,6)-1,d=+v.slice(6,8);
+      const h=v.length>8?+v.slice(9,11):0,mi=v.length>8?+v.slice(11,13):0,s=v.length>8?(+v.slice(13,15)||0):0;
+      return isUTC ? new Date(Date.UTC(y,mo,d,h,mi,s)) : new Date(y,mo,d,h,mi,s);
+    }
     const dL=block.match(/(?:^|\n)DTSTART(?:;[^:\r\n]*)?:([^\r\n]+)/im);
     const start=dL?parsedt(dL[1].trim()):null; if(!start) return;
     const title=get('SUMMARY').replace(/\\n/g,' ').replace(/\\,/g,',').trim()||'Untitled Event';
